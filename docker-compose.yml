@@ -1,0 +1,13 @@
+# https://qiita.com/tsujiguchi/items/5a2b7dbdc36ecb19c751#ftp
+version: '3'
+services:
+  ftp:
+    container_name: ftp
+    build: .
+    volumes:
+      - ./data/upload:/home/ftpusers/sample
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    environment:
+      - PUBLICHOST=localhost
