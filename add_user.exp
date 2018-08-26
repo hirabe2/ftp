@@ -1,0 +1,20 @@
+#!/usr/bin/expect
+
+set timeout 20
+
+spawn pure-pw useradd sample -f /etc/pure-ftpd/passwd/pureftpd.passwd -m -u ftpuser -d /home/ftpusers/sample
+expect {
+  "Password:" {
+    send "sample\n"
+    exp_continue
+  }
+  "Enter it again:" {
+    send "sample\n"
+  }
+}
+
+expect {
+  "\\\$" {
+    exit 0
+  }
+}
